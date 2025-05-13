@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import { Settings } from "lucide-react";
@@ -9,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+// Removed Image import temporarily
 
 const Sidebar = () => {
   const pathname = usePathname();
@@ -19,13 +18,16 @@ const Sidebar = () => {
       {/* Logo */}
       <div className="flex p-4 justify-between items-center">
         <h1 className="font-bold w-auto h-8 flex items-center justify-center gap-3">
-          <img
+          {/* Temporarily removed Image */}
+          {/* <Image
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOYv82bKXTCXPIAPfCqfNqeYwe1hgl_dmr6A&s"
             alt="Logo"
             className="h-8 w-8 object-cover rounded-sm"
-          />
+            width={32}
+            height={32}
+          /> */}
           <div className="flex text-lg md:text-xl items-center gap-1">
-            <span>Harsh's Group</span>
+            <span>Harsh&apos;s Group</span>
             <span className="text-primary">LMS</span>
           </div>
         </h1>
