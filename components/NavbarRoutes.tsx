@@ -49,7 +49,7 @@ const NavbarRoutes = async () => {
                 {isTeacher(userId) && (
                   <DropdownMenuItem asChild>
                     <Link href="/teacher/courses" className="w-full pr-5">
-                      Teacher Dashboard
+                      Admin Dashboard
                     </Link>
                   </DropdownMenuItem>
                 )}

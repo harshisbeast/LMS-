@@ -37,7 +37,7 @@ const Chart = ({ data }: ChartProps) => {
         >
           {/* <CartesianGrid strokeDasharray="3 3" /> */}
           <XAxis dataKey="name" fontSize={12} />
-          <YAxis tickFormatter={(value) => `TRY ${value}`} fontSize={12}/>
+          <YAxis tickFormatter={(value) => `INR ${value}`} fontSize={12}/>
           {/* <Tooltip />
           <Legend /> */}
           <Bar

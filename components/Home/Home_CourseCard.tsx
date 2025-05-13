@@ -67,7 +67,7 @@ const Home_CourseCard = ({ image, teacher, rank, description, hours, lessons }: 
           <iframe
             width="560"
             height="315"
-            src="https://www.youtube-nocookie.com/embed/bNyUyrR0PHo?si=nyO0n0GUNuHKQdz0"
+            src="https"
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
