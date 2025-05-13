@@ -20,8 +20,11 @@ const nextConfig = {
         port: '',
         pathname: '/*',
       },
-    ]
-  }
+    ],
+  },
+  experimental: {
+    runtime: 'nodejs', // Add this line to specify the Node.js runtime
+  },
 }
 
 module.exports = nextConfig
