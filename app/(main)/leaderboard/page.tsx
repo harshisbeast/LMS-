@@ -68,7 +68,7 @@ const AboutUs = () => {
           {/* Team Member 5 */}
           <div className="flex flex-col items-center animate__animated animate__fadeIn animate__delay-12s">
             <p className="text-lg text-gray-700">Prasenjit</p>
-            <p className="text-sm text-gray-500">ID-1132</p>
+            <p className="text-sm text-gray-500">ID-1136</p>
           </div>
         </div>
       </div>
