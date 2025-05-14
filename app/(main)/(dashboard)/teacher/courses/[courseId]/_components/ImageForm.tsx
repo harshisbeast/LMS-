@@ -1,23 +1,22 @@
+
+
+
 "use client";
 
-import * as z from "zod";
-import axios from "axios";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import React, { useState } from "react";
+import { CldImage } from "next-cloudinary";
 import { Button } from "@/components/ui/button";
 import { MdOutlineCancel } from "react-icons/md";
-import { useState } from "react";
+import { FaUpload } from "react-icons/fa";
 import { BiLoader } from "react-icons/bi";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Course } from "@prisma/client";
-import { BiSolidImageAdd } from "react-icons/bi";
-import { MdOutlineImagesearchRoller } from "react-icons/md";
-import { FaImage } from "react-icons/fa6";
 import FileUpload from "@/components/FileUpload";
-import { CldImage } from "next-cloudinary";
-import { getPublicIdFromCloudinaryURL } from "@/lib/formats";
-// import { FileUpload } from "@/components/FileUpload";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import axios from "axios";
 
 interface ImageFormProps {
   initialData: Course;
@@ -56,7 +55,7 @@ const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
   };
 
   return (
-    <div className=" border bg-accent/50 dark:bg-accent/20 rounded-lg p-4  ">
+    <div className="border bg-accent/50 dark:bg-accent/20 rounded-lg p-4">
       <div className="font-medium text-lg flex items-start justify-between">
         <span className="flex items-center justify-center gap-2">
           {isSubmitting && <BiLoader className="animate-spin w-5 h-5" />}
@@ -64,7 +63,7 @@ const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
             Course Image <span className="text-red-500"></span>
           </span>
         </span>
-        <Button variant={"ghost"} onClick={toggleEdit} >
+        <Button variant={"ghost"} onClick={toggleEdit}>
           {isEditing && (
             <>
               <MdOutlineCancel className="h-4 w-4 mr-2" />
@@ -73,13 +72,13 @@ const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
           )}
           {!isEditing && !initialData.imageUrl && (
             <>
-              <BiSolidImageAdd className="h-4 w-4 mr-2" />
+              <FaUpload className="h-4 w-4 mr-2" />
               Add Image
             </>
           )}
           {!isEditing && initialData.imageUrl && (
             <>
-              <MdOutlineImagesearchRoller className="h-4 w-4 mr-2" />
+              <FaUpload className="h-4 w-4 mr-2" />
               Edit Image
             </>
           )}
@@ -87,51 +86,13 @@ const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
       </div>
       {isEditing && (
         <div>
-          {/* <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(onSubmit)}
-              className="space-y-4 xl:space-y-0 mt-3 xl:flex xl:gap-2 xl:w-full xl:justify-start xl:items-start"
-            >
-              <FormField
-                control={form.control}
-                name="imageUrl"
-                render={({ field }) => (
-                  <FormItem className="w-full">
-                    <FormControl>
-                      <Input
-                        disabled={isSubmitting}
-                        placeholder="https://images.com/imageUrl"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              ></FormField>
-              <div className="flex items-center gap-x-2">
-                <Button
-                  disabled={!isValid || isSubmitting}
-                  type="submit"
-                  variant="default"
-                >
-                  {!isValid ||
-                    (isSubmitting && (
-                      <BiLoader className="mr-1 animate-spin" />
-                    ))}
-                  Save
-                </Button>
-              </div>
-            </form>
-          </Form> */}
-          <div>
-            <FileUpload
-              onChange={(url) => {
-                if (url) {
-                  onSubmit({ imageUrl: url });
-                }
-              }}
-            />
-          </div>
+          <FileUpload
+            onChange={(url) => {
+              if (url) {
+                onSubmit({ imageUrl: url });
+              }
+            }}
+          />
           <span className="text-xs text-muted-foreground mt-4">
             16:9 aspect ratio recommended
           </span>
@@ -139,20 +100,19 @@ const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
       )}
       {!isEditing && initialData.imageUrl && (
         <div className="relative aspect-video mt-2">
-          {/* https://res.cloudinary.com/dceqm5pnu/image/upload/v1701449387/courses_images/bpghnhllevcducufgsdm.jpg */}
           <CldImage
             aspectRatio="video"
             width={1600}
             height={900}
-            src={getPublicIdFromCloudinaryURL(initialData.imageUrl)}
-            alt={"Image"}
+            src={initialData.imageUrl || "https://res.cloudinary.com/ddp30kyze/image/upload/v1747220520/my_uploads/dimelqh3kotcvry6cdk6.jpg"} // Fallback image if no image URL
+            alt="Course Image"
             className="rounded-3xl border"
           />
         </div>
       )}
       {!isEditing && !initialData.imageUrl && (
         <div className="flex items-center justify-center h-60 bg-accent rounded-xl mt-2 cursor-not-allowed">
-          <FaImage className="h-10 w-10 text-muted-foreground" />
+          <FaUpload className="h-10 w-10 text-muted-foreground" />
         </div>
       )}
     </div>
